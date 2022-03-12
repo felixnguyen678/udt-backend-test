@@ -1,6 +1,6 @@
 @startuml ERD
 
-object User {
+object Customer {
   -id: ObjectID <<generated>>
   --
   *username: string
@@ -16,7 +16,7 @@ object User {
 }
 
 object CartDetail {
-  ~userId: string
+  ~customerId: string
   ~productId: string
   ~amount: number
   --
@@ -55,7 +55,7 @@ object Billing{
   -id: ObjectId <<generated>>
   --
   ~agencyId: string
-  ~userId: string
+  ~customerId: string
   --
   *status: "ordered" | "being shipped" | "complete" | "return" | "refund"
   *totalAmount: number
@@ -63,7 +63,7 @@ object Billing{
   *createdAt: date
 }
 object BillingDetail {
-  ~userId: string
+  ~customerId: string
   ~productId: string
   --
   *amount: number
@@ -87,10 +87,10 @@ object Admin {
 
 Agency ||-right-o{ Billing
 Agency ||-up-o{ Product
-Billing }o-right-|| User
+Billing }o-right-|| Customer
 
 Product ||-right-o{ CartDetail
-CartDetail }o-down-|| User
+CartDetail }o-down-|| Customer
 
 Product ||-down-o{ BillingDetail
 

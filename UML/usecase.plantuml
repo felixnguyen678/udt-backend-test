@@ -1,0 +1,13 @@
+
+@startuml
+
+left to right direction
+
+(manage agency) ..> (read agency information): <<include>>
+(manage agency) ..> (create agency): <<include>>
+(manage agency) ..> (update agency): <<include>>
+(manage agency) ..> (delete agency): <<include>>
+
+
+
+@enduml
