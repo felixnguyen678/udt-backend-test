@@ -1,0 +1,101 @@
+@startuml ERD
+
+object User {
+  -id: ObjectID <<generated>>
+  --
+  *username: string
+  *password: string
+  *name: string
+  *address: string
+  *email: string
+  *phoneNumber: string
+  *gender: string
+  *status: "active" | "inactive"
+  *createdAt: date
+  *updatedAt: date
+}
+
+object CartDetail {
+  ~userId: string
+  ~productId: string
+  ~amount: number
+  --
+  *createdAt: date
+  *updatedAt: date
+}
+
+object Agency {
+  -id: ObjectID <<generated>>
+  --
+  *username: string
+  *password: string
+  *name: string
+  *address: string
+  *email: string
+  *phoneNumber: string
+  *gender: string
+  *status: "active" | "inactive"
+  *isDeleted: boolean
+  *createdAt: date
+  *updatedAt: date
+}
+
+object Product {
+  -id: ObjectId <<generated>>
+  --
+  ~agencyId: string
+  --
+  *price: number
+  *amount: number
+  *createdAt: date
+  *updatedAt: date
+}
+
+object Billing{
+  -id: ObjectId <<generated>>
+  --
+  ~agencyId: string
+  ~userId: string
+  --
+  *status: "ordered" | "being shipped" | "complete" | "return" | "refund"
+  *totalAmount: number
+  *totalCost: number
+  *createdAt: date
+}
+object BillingDetail {
+  ~userId: string
+  ~productId: string
+  --
+  *amount: number
+  *createdAt: date
+}
+object Transaction {
+  -id: ObjectId <<generated>>
+  --
+  *amount: number
+  *type: "checkout" | "refund"
+}
+
+
+object Admin {
+  -id: ObjectId <<generated>>
+  --
+  *username: string
+  *password: string
+}
+
+
+Agency ||-right-o{ Billing
+Agency ||-up-o{ Product
+Billing }o-right-|| User
+
+Product ||-right-o{ CartDetail
+CartDetail }o-down-|| User
+
+Product ||-down-o{ BillingDetail
+
+Billing ||-up-o{ BillingDetail
+Billing ||-down-o{ Transaction
+
+
+@enduml
