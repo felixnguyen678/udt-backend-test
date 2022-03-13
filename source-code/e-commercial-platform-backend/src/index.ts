@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import {ApplicationConfig, ECommercialPlatformBackendApplication} from './application';
 
 export * from './application';

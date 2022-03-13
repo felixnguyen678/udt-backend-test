@@ -45,8 +45,10 @@ object Product {
   --
   ~agencyId: string
   --
+  *productName: string
   *price: number
   *amount: number
+  *category: string
   *createdAt: date
   *updatedAt: date
 }
@@ -72,8 +74,11 @@ object BillingDetail {
 object Transaction {
   -id: ObjectId <<generated>>
   --
+  ~billingId: string
+  --
   *amount: number
   *type: "checkout" | "refund"
+  *createdAt: date
 }
 
 
