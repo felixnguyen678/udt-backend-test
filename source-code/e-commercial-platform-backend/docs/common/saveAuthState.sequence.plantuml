@@ -1,0 +1,17 @@
+
+@startuml
+actor User
+boundary UserInterface
+control APIServer
+User -> UserInterface ++: Authentication information
+UserInterface -> APIServer --++: Authentication request
+APIServer -> APIServer: VerifyUser
+APIServer --> UserInterface --: data response
+alt#Gold #LightBlue authentication information is valid with JWT return
+    UserInterface -> UserInterface: save JWT to cookies
+    UserInterface --> User: redirect to main page
+else #Pink authentication information is not valid
+    UserInterface --> User --: Login failure failure response
+
+end
+@enduml
