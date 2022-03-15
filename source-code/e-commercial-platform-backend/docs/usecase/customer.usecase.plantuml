@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+
+package "Customer UI" {
+    (login)
+    (logout)
+    (read product's transactions, billings)
+    (read agency information)
+}
+
+User --> (login)
+User --> (logout)
+User --> (read product's transactions, billings)
+User --> (read agency information)
+
+@enduml

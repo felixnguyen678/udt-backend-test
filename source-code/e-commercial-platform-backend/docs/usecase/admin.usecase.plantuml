@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+package "Admin UI" {
+    (manage agency)
+    (create agency)
+    (update agency)
+    (delete agency)
+    (read agency information)
+}
+
+(manage agency) ..> (read agency information): <<include>>
+(manage agency) ..> (create agency): <<include>>
+(manage agency) ..> (update agency): <<include>>
+(manage agency) ..> (delete agency): <<include>>
+
+Admin --> (manage agency)
+
+
+@enduml
