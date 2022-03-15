@@ -1,19 +1,23 @@
 # UDT Backend test
 
-## Lựa chọn Database
+## Selected Database: MongoDB
 
 
-Lựa chọn **MongoDB** làm cơ sở dữ liệu để triển khai hệ thống
+Select **MongoDB** as the database to deploy the system
 
-Điểm mạnh của MongoDB:
-- Có cú pháp khá giống ngôn ngữ Javascript và biểu diễn data dưới dạng JSON do đó khá dễ làm quen.
-- Setup đơn giản và nhanh chóng hơn các loại RDBMS vì không chứa nhiều ràng buộc
-- Có độ phản hồi cực cao vì là một document-stored database => Tính Availability cao.
-- Có tính flexibility cao vì nó là schemaless database.
-- Có cơ chế sharding tách dữ liệu ra nhiều cluster để phân tán độ chịu tải trên từng database server.
-- có cơ chế replication để truy vấn được từ mọi địa điểm và cũng hộ trợ chịu tải cho database server.
-=> Phù hợp đối với những ứng dụng có lượng dữ liệu lớn
+Strengths of MongoDB:
+- Has a syntax quite similar to Javascript language and represents data as JSON, so it is quite easy to get used to.
+- Has high flexibility because it is schemaless database.
+- Setup is simpler and faster than other types of RDBMS because it does not contain many constraints
 
-Điểm yếu của MongoDB:
-- Tốn nhiều dung lượng lưu trữ vì tính availability cao, điển hình là cơ chế replication.
-- Tính consistency thấp vì không có ràng buộc và quan hệ giữa các document.
+=> Esier for development.
+- Super fast reading speed because it is a document-stored database (High Availability).
+- There is a sharding mechanism that separates data into many clusters to distribute the load on each database server.
+- There is a replication mechanism to query from any location and also support load for the database server.
+
+=> Suitable for platform with large amounts of data, when the platform is used by more and more people.\
+=> Customers often use E-commerce platform to view a lot of products before deciding to buy one, Mongodb exhibits high availability as I said before will bring to customer extremely high reading speed.
+
+Weaknesses of MongoDB:
+- Consumes a lot of storage space because of high availability, typically a replication mechanism.
+- Low consistency because there are no constraints and relationships between documents.
