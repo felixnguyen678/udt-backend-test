@@ -1,0 +1,27 @@
+
+@startuml
+actor User
+control APIServer
+database Admin
+database Agency
+database Customer
+opt Login API Endpoint
+    User -> APIServer ++: Login information with username and password
+    APIServer -> APIServer: has password
+    APIServer -> Admin ++: find Admin with username and hash password
+    Admin --> APIServer --: data response
+    APIServer -> Agency ++: find Agency with username and hash password
+    Agency --> APIServer --: data response
+    APIServer -> Customer ++: find Customer with username and hash password
+    Customer --> APIServer --: data response
+    alt#Gold #LightBlue user has found
+        APIServer -> APIServer: create JWT
+        APIServer --> User --: Login success response with JWT
+
+    else #Pink no user found
+        APIServer --> User --: Authentication failure response
+
+    end
+end
+
+@enduml

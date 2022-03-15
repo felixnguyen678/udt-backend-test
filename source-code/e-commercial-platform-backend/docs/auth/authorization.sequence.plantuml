@@ -1,0 +1,28 @@
+@startuml
+actor User
+control APIServer
+database Admin
+database Agency
+database Customer
+opt some protected endpoint
+    User -> APIServer ++: request with JWT token in header
+    APIServer -> APIServer: verify token
+    APIServer -> APIServer: check token valid
+    APIServer -> APIServer: Check token expired
+    APIServer -> Admin ++: find Admin by token that has been decoded
+    Admin --> APIServer --: data response
+    APIServer -> Agency ++: find Agency by token that has been decoded
+    Agency --> APIServer --: data response
+    APIServer -> Customer ++: find Customer by token that has been decoded
+    Customer --> APIServer --: data response
+    alt#Gold #LightBlue token valid and not expired, user has found and is allowed to use endpoint
+        APIServer -> APIServer: do endpoint job
+        APIServer --> User --: response
+
+    else #Pink anything else
+        APIServer --> User --: Authorization failure response
+
+    end
+end
+
+@enduml

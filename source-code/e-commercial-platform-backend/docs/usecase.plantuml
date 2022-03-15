@@ -1,6 +1,28 @@
 
 @startuml
 
+package "User UI" {
+    (login)
+    (logout)
+    (read product's transactions, billings)
+}
+
+package "Agency UI" {
+    (manage owned product)
+    (read transactions, billing of owned product)
+    (read owned product information)
+    (create owned product)
+    (update owned product)
+    (delete owned product)
+}
+
+package "Admin UI" {
+    (manage agency)
+    (create agency)
+    (update agency)
+    (delete agency)
+}
+
 left to right direction
 
 (manage agency) ..> (read agency information): <<include>>
@@ -18,6 +40,7 @@ Admin --> (manage agency)
 
 Agency --> (manage owned product)
 Agency --> (read transactions, billing of owned product)
+
 
 User --> (login)
 User --> (logout)
